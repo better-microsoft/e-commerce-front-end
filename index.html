@@ -21,6 +21,35 @@
     <a href="#" class="btn btn-primary">grocessories</a>
   </div>
     </div>
+    <nav class="navbar navbar-inverse" class="nav">
+  <div class="container-fluid">
+    <div class="navbar-header" class="hed">
+    </div>
 
+    <ul class="nav navbar-nav navbar-right">
+      <li><a id="sign-up-btn" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a id="login-btn" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a id="changePassword-btn" href="#"><span class="glyphicon glyphicon-log-in"></span> change-password</a></li>
+      <li><a id="sign-out-btn" href="#"><span class="glyphicon glyphicon-user"></span> Sign-out</a></li>
+    </ul>
+  </div>
+</nav>
+<div class = "container">
+  <form id="sign-up">
+        <h2>Signup</h2>
+        <div class="form-group">
+          <label for="email">Email address:</label>
+          <input type="email" name="credentials[email]" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" name="credentials[password]" class="form-control" id="pwd">
+        </div>
+        <div class="form-group">
+          <label for="pwd">ConfirmPassword:</label>
+          <input type="password" name="credentials[password_confirmation]" class="form-control" id="pwd">
+        </div>
+        <button type="submit" class="btn btn-success btn-block">Sign Up</button>
+      </form>
     </body>
 </html>
