@@ -5,17 +5,16 @@ const ui = require('./ui')
 // const store = require('../store')
 
 const onSignUp = function (event) {
-  console.log("hello")
   event.preventDefault()
   const data = getFormFields(event.target)
   api.signUp(data)
     .then(ui.signUpSuccess)
     .catch(ui.signUpFailure)
 }
-const addhandlers = () => {
+const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
 }
 
 module.exports = {
-  addhandlers
+  addHandlers
 }
