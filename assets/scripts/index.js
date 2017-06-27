@@ -12,7 +12,7 @@ const authEvents = require('./auth/event.js')
 
 $(() => {
   authEvents.addHandlers()
-  $('#sign-in').show()
+  $('#sign-in').hide()
   $('#sign-up').hide()
   $('#sign-out-btn').show()
   $('#changePassword-btn').show()
