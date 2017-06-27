@@ -12,5 +12,30 @@ const authEvents = require('./auth/event.js')
 
 $(() => {
   authEvents.addHandlers()
+  $('#sign-in').show()
+  $('#sign-up').hide()
+  $('#sign-out-btn').show()
+  $('#changePassword-btn').show()
+  $('#change-password').hide()
 })
-// use require with a reference to bundle the file and use it in this file
+// sign-up
+$('#sign-up-btn').click(function () {
+  $('#sign-up').show()
+  $('#sign-in').hide()
+  $('#change-password').hide()
+})
+$('#login-btn').click(function () {
+  $('#sign-in').show()
+  $('#sign-up').hide()
+})
+
+$('#changePassword-btn').click(function () {
+  $('#sign-up').hide()
+  $('#sign-in').hide()
+  $('#change-password').show()
+})
+$('#sign-out-btn').click(function () {
+  $('#sign-in').show()
+  $('#sign-up').hide()
+  $('#change-password').hide()
+})

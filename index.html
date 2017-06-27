@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>e-commerce</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `link` tags unless you know what you are doing -->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<head>
+  <title>e-commerce</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `script` tags unless you know what you are doing -->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body class="container-fluid">
-      <div class="container">
-      <div class="jumbotron">
-        <h1>online store</h1>
-        <div class="btn-group btn-group-justified">
-    <a href="#" class="btn btn-primary">clothes</a>
-    <a href="#" class="btn btn-primary">furniture</a>
-    <a href="#" class="btn btn-primary">grocessories</a>
-  </div>
+  <!-- Do not add `link` tags unless you know what you are doing -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Do not add `script` tags unless you know what you are doing -->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body class="container-fluid">
+  <div class="container">
+    <div class="jumbotron">
+      <h1>online store</h1>
+      <div class="btn-group btn-group-justified">
+        <a href="#" class="btn btn-primary">clothes</a>
+        <a href="#" class="btn btn-primary">furniture</a>
+        <a href="#" class="btn btn-primary">grocessories</a>
+      </div>
     </div>
     <nav class="navbar navbar-inverse" class="nav">
-  <div class="container-fluid">
-    <div class="navbar-header" class="hed">
-    </div>
+      <div class="container-fluid">
+        <div class="navbar-header" class="hed">
+        </div>
 
-    <ul class="nav navbar-nav navbar-right">
-      <li><a id="sign-up-btn" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a id="login-btn" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      <li><a id="changePassword-btn" href="#"><span class="glyphicon glyphicon-log-in"></span> change-password</a></li>
-      <li><a id="sign-out-btn" href="#"><span class="glyphicon glyphicon-user"></span> Sign-out</a></li>
-    </ul>
-  </div>
-</nav>
-<div class = "container">
-  <form id="sign-up">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a id="sign-up-btn" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a id="login-btn" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li><a id="changePassword-btn" href="#"><span class="glyphicon glyphicon-log-in"></span> change-password</a></li>
+          <li><a id="sign-out-btn" href="#"><span class="glyphicon glyphicon-user"></span> Sign-out</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <form id="sign-up">
         <h2>Signup</h2>
         <div class="form-group">
           <label for="email">Email address:</label>
@@ -51,5 +53,32 @@
         </div>
         <button type="submit" class="btn btn-success btn-block">Sign Up</button>
       </form>
-    </body>
+      <form id="sign-in">
+        <h2>Login</h2>
+        <div class="form-group">
+          <label for="email">Email address:</label>
+          <input type="email" name="credentials[email]" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" name="credentials[password]" class="form-control" id="pwd">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" class="sin">Login</button>
+      </form>
+      <form id="change-password">
+        <h2>CHANGE PASSWORD</h2>
+        <div class="form-group">
+          <label for="pwd"> Old-Password:</label>
+          <input type="password" name="passwords[old]" class="form-control" id="pwd">
+        </div>
+        <div class="form-group">
+          <label for="pwd">New-Password:</label>
+          <input type="password" name="passwords[new]" class="form-control" id="pwd">
+        </div>
+        <button type="submit" class="btn btn-info btn-block ">Submit</button>
+      </form>
+    </div>
+  </div>
+</body>
+
 </html>
