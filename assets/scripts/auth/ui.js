@@ -1,3 +1,5 @@
+const store = require('../store')
+
 const signUpSuccess = (data) => {
   console.log(data)
   $('#sign-up').hide()
@@ -7,6 +9,8 @@ const signUpSuccess = (data) => {
 
 const signInSuccess = (data) => {
   console.log(data)
+  $('#sign-in').hide()
+  $('#cart').show()
 }
 const signInFaliure = (error) => {
   console.log(error)
@@ -31,6 +35,25 @@ const signOutFailure = (error) => {
   $('#error').show()
   $('#errmsg').text('Signout failed.')
 }
+
+const getAllProductsSuccess = (data) => {
+  console.log(data, 'products')
+  console.log(data)
+  for (let i = 0; i < data.products.length; i++) {
+    $('#demo').append(data.products[i].id)
+    $('#demo').append(data.products[i].name)
+    $('#demo').append(data.products[i].description)
+  }
+  console.log(store.products)
+}
+
+const createCartSuccess = (data) => {
+  console.log(data, ':-created cart')
+}
+
+const createCartFailure = (error) => {
+  console.log(error, ':-created cart error')
+}
 module.exports = {
   signUpSuccess,
   signInSuccess,
@@ -38,5 +61,8 @@ module.exports = {
   changePasswordSuccess,
   changePasswordFaliure,
   signOutSuccess,
-  signOutFailure
+  signOutFailure,
+  getAllProductsSuccess,
+  createCartSuccess,
+  createCartFailure
 }

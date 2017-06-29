@@ -17,6 +17,8 @@ $(() => {
   $('#sign-out-btn').show()
   $('#changePassword-btn').show()
   $('#change-password').hide()
+  $('#cart').hide()
+  // $('#demo').hide()
 })
 // sign-up
 $('#sign-up-btn').click(function () {
