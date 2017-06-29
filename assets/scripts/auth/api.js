@@ -5,7 +5,7 @@ const store = require('../store.js')
 const signUp = function (data) {
   console.log('data is', data)
   return $.ajax({
-    url: config.apiOrigins.production + '/sign-up/',
+    url: config.apiOrigins.development + '/sign-up/',
     method: 'POST',
     data
   })
@@ -13,7 +13,7 @@ const signUp = function (data) {
 
 const signIn = function (data) {
   return $.ajax({
-    url: config.apiOrigins.production + '/sign-in',
+    url: config.apiOrigins.development + '/sign-in',
     method: 'POST',
     data
   })
@@ -26,7 +26,7 @@ const signIn = function (data) {
 }
 const changePassword = function (data) {
   return $.ajax({
-    url: config.apiOrigins.production + '/change-password/' + store.userId,
+    url: config.apiOrigins.development + '/change-password/' + store.userId,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.userToken
@@ -37,7 +37,7 @@ const changePassword = function (data) {
 }
 const signOut = function () {
   return $.ajax({
-    url: config.apiOrigins.production + '/sign-out/' + store.userId,
+    url: config.apiOrigins.development + '/sign-out/' + store.userId,
     method: 'DELETE',
     headers: {
       Authorization: 'Token token=' + store.userToken
@@ -48,7 +48,7 @@ const signOut = function () {
 
 // const createProduct = function  {
 //   return $.ajax({
-//     url: config.apiOrigins.production + '/products',
+//     url: config.apiOrigins.development + '/products',
 //     method: 'POST',
 //     headers: {
 //       Authorization: 'Token token=' + store.userToken
@@ -65,7 +65,7 @@ const signOut = function () {
 const createCart = function (data) {
   console.log(data)
   return $.ajax({
-    url: config.apiOrigins.production + '/carts',
+    url: config.apiOrigins.development + '/carts',
     method: 'POST',
     headers: {
       Authorization: 'Token token=' + store.userToken
@@ -82,7 +82,7 @@ const createCart = function (data) {
 const getCart = function (data) {
   console.log(data)
   return $.ajax({
-    url: config.apiOrigins.production + '/carts',
+    url: config.apiOrigins.development + '/carts',
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.userToken
@@ -92,7 +92,7 @@ const getCart = function (data) {
 
 const getAllProducts = function (data) {
   return $.ajax({
-    url: config.apiOrigins.production + '/products',
+    url: config.apiOrigins.development + '/products',
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.userToken
@@ -107,7 +107,7 @@ const getAllProducts = function (data) {
 
 // const productOFUser = function (event) {
 //   return $.ajax({
-//     url: config.apiOrigins.production + '/products/',
+//     url: config.apiOrigins.development + '/products/',
 //     method: 'GET',
 //     headers: {
 //       Authorization: 'Token token=' + store.userToken
