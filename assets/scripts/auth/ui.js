@@ -54,6 +54,14 @@ const createCartSuccess = (data) => {
 const createCartFailure = (error) => {
   console.log(error, ':-created cart error')
 }
+
+const getCartSuccess = (data) => {
+  console.log(data, ':-get cart')
+}
+
+const getCartFailure = (error) => {
+  console.log(error, ':-get cart error')
+}
 module.exports = {
   signUpSuccess,
   signInSuccess,
@@ -64,5 +72,7 @@ module.exports = {
   signOutFailure,
   getAllProductsSuccess,
   createCartSuccess,
-  createCartFailure
+  createCartFailure,
+  getCartSuccess,
+  getCartFailure
 }

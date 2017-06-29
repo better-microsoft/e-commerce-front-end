@@ -45,6 +45,12 @@ const onCreateCart = function (event) {
     .then(ui.createCartSuccess)
     .catch(ui.createCartFailure)
 }
+const onGetCart = function (event) {
+  event.preventDefault()
+  api.getCart(store.userId)
+    .then(ui.getCartSuccess)
+    .catch(ui.getCartFailure)
+}
 const onGetAllProducts = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
@@ -67,6 +73,7 @@ const addHandlers = () => {
   $('#sign-out-btn').on('click', onSignOut)
   $('#cart').on('click', onGetAllProducts)
   $('#createcart').on('click', onCreateCart)
+  $('#getcart').on('click', onGetCart)
   // $('#test').on('click', onCreateProduct)
 }
 

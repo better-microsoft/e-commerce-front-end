@@ -78,6 +78,18 @@ const createCart = function (data) {
   })
     // .then(console.log)
 }
+
+const getCart = function (data) {
+  console.log(data)
+  return $.ajax({
+    url: config.apiOrigin + '/carts',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.userToken
+    }
+  })
+}
+
 const getAllProducts = function (data) {
   return $.ajax({
     url: config.apiOrigin + '/products',
@@ -109,6 +121,7 @@ module.exports = {
   signOut,
   // createProduct,
   createCart,
+  getCart,
   getAllProducts
   // productOFUser
 }
