@@ -45,9 +45,70 @@ const signOut = function () {
   })
   .then(console.log)
 }
+
+// const createProduct = function  {
+//   return $.ajax({
+//     url: config.apiOrigin + '/products',
+//     method: 'POST',
+//     headers: {
+//       Authorization: 'Token token=' + store.userToken
+//     },
+//     data: {
+//   //     'product': {
+//   //       'name' :
+//   //       // 'price' :
+//   //       'description' :
+//   //     }
+//     }
+//   })
+// }
+const createCart = function (data) {
+  console.log(data)
+  return $.ajax({
+    url: config.apiOrigin + '/carts',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + store.userToken
+    },
+    data: {
+      'cart': {
+        'owner': store.userId
+      }
+    }
+  })
+    // .then(console.log)
+}
+const getAllProducts = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/products',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.userToken
+    }
+  })
+  .then((response) => {
+    store.productId = response.products.id
+    store.products = response.products
+    return response
+  })
+}
+
+// const productOFUser = function (event) {
+//   return $.ajax({
+//     url: config.apiOrigin + '/products/',
+//     method: 'GET',
+//     headers: {
+//       Authorization: 'Token token=' + store.userToken
+//     }
+//   })
+// }
 module.exports = {
   signUp,
   signIn,
   changePassword,
-  signOut
+  signOut,
+  // createProduct,
+  createCart,
+  getAllProducts
+  // productOFUser
 }

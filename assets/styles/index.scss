@@ -1,2 +1,46 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+
+ @-webkit-keyframes changeColors {
+   0% {
+     background-color: #BC8F8F;
+   }
+   50% {
+     background-color: #20B2AA;
+   }
+   100% {
+     background-color: #EE82EE;
+   }
+ }
+
+ @-moz-keyframes changeColors {
+   0% {
+     background-color: #BC8F8F;
+   }
+   50% {
+     background-color: #20B2AA;
+   }
+   100% {
+     background-color: #EE82EE;
+   }
+ }
+
+ @-ms-keyframes changeColors {
+   0% {
+     background-color: #BC8F8F;
+   }
+   50% {
+     background-color: #20B2AA;
+   }
+   100% {
+     background-color: #EE82EE;
+   }
+ }
+
+ .jumbotron {
+   -webkit-animation: changeColors 3s infinite;
+   -moz-animation: changeColors 3s infinite;
+   -ms-animation: changeColors 3s infinite;
+   background-color: #f14444;
+ }
