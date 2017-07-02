@@ -3,9 +3,8 @@ const config = require('../config')
 const store = require('../store.js')
 
 const signUp = function (data) {
-  console.log('data is', data)
   return $.ajax({
-    url: config.apiOrigins.development + '/sign-up/',
+    url: config.apiOrigins.development + '/sign-up',
     method: 'POST',
     data
   })
@@ -17,13 +16,14 @@ const signIn = function (data) {
     method: 'POST',
     data
   })
-  .then((response) => {
-    store.userToken = response.user.token
-    store.userId = response.user.id
-    return store
+  .then((data) => {
+    store.userToken = data.user.token
+    store.userId = data.user.id
+    store.cartId = data.user.cartId
+    return data
   })
-  .then(console.log)
 }
+
 const changePassword = function (data) {
   return $.ajax({
     url: config.apiOrigins.development + '/change-password/' + store.userId,

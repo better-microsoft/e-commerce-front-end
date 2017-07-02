@@ -7,6 +7,8 @@ const store = require('../store')
 const onSignUp = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
+  data.credentials.cartId = 'empty'
+  console.log(data)
   api.signUp(data)
     .then(ui.signUpSuccess)
     .catch(ui.signUpFailure)
