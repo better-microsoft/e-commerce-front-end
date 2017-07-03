@@ -8,6 +8,10 @@ const signUp = function (data) {
     method: 'POST',
     data
   })
+  // .then((response) => {
+  //   console.log(response)
+  //   createCart(response)
+  // })
 }
 
 const signIn = function (data) {
@@ -20,7 +24,11 @@ const signIn = function (data) {
     store.userToken = data.user.token
     store.userId = data.user.id
     store.cartId = data.user.cartId
-    return data
+    createCart(data)
+    .then((data) => {
+      console.log(data.cart.id)
+      updateUser(data)
+    })
   })
 }
 
@@ -46,6 +54,23 @@ const signOut = function () {
   .then(console.log)
 }
 
+const updateUser = function (data) {
+  console.log(data)
+  return $.ajax({
+    url: config.apiOrigins.development + '/users/' + store.userId,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.userToken
+    },
+    data: {
+      'user': {
+        'cartId': data.cart.id
+      }
+    }
+  })
+  .then(console.log)
+}
+
 // const createProduct = function  {
 //   return $.ajax({
 //     url: config.apiOrigins.development + '/products',
@@ -63,7 +88,6 @@ const signOut = function () {
 //   })
 // }
 const createCart = function (data) {
-  console.log(data)
   return $.ajax({
     url: config.apiOrigins.development + '/carts',
     method: 'POST',
@@ -75,6 +99,10 @@ const createCart = function (data) {
         'owner': store.userId
       }
     }
+  })
+  .then((data) => {
+    console.log(data)
+    return data
   })
     // .then(console.log)
 }
@@ -119,6 +147,7 @@ module.exports = {
   signIn,
   changePassword,
   signOut,
+  updateUser,
   // createProduct,
   createCart,
   getCart,
