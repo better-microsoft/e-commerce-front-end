@@ -47,9 +47,11 @@ const onCreateCart = function (event) {
     .then(ui.createCartSuccess)
     .catch(ui.createCartFailure)
 }
-const onGetCart = function (event) {
+const onAddToCart = function (event) {
   event.preventDefault()
-  api.getCart(store.userId)
+  const data = $('#eatme').val()
+  console.log(data)
+  api.addToCart(data)
     .then(ui.getCartSuccess)
     .catch(ui.getCartFailure)
 }
@@ -75,7 +77,7 @@ const addHandlers = () => {
   $('#sign-out-btn').on('click', onSignOut)
   $('#cart').on('click', onGetAllProducts)
   $('#createcart').on('click', onCreateCart)
-  $('#getcart').on('click', onGetCart)
+  $('#getcart').on('click', onAddToCart)
   // $('#test').on('click', onCreateProduct)
 }
 
