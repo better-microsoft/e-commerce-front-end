@@ -55,10 +55,10 @@ const onAddToCart = function (event) {
     .then(ui.getCartSuccess)
     .catch(ui.getCartFailure)
 }
-const onGetAllProducts = function (event) {
+const onGetCart = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
-  api.getAllProducts(data)
+  api.getCart(data)
     .then(ui.getAllProductsSuccess)
     .catch(ui.getAllProductsFailure)
 }
@@ -75,7 +75,7 @@ const addHandlers = () => {
   $('#sign-in').on('submit', onSignIn)
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out-btn').on('click', onSignOut)
-  $('#cart').on('click', onGetAllProducts)
+  $('#cart').on('click', onGetCart)
   $('#createcart').on('click', onCreateCart)
   $('#getcart').on('click', onAddToCart)
   // $('#test').on('click', onCreateProduct)
