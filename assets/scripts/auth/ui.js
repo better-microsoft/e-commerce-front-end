@@ -39,12 +39,6 @@ const signOutFailure = (error) => {
 const getAllProductsSuccess = (data) => {
   console.log(data, 'products')
   console.log(data)
-  for (let i = 0; i < data.products.length; i++) {
-    $('#demo').append(data.products[i].id)
-    $('#demo').append(data.products[i].name)
-    $('#demo').append(data.products[i].description)
-  }
-  console.log(store.products)
 }
 
 const createCartSuccess = (data) => {

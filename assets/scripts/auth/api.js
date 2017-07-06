@@ -123,17 +123,17 @@ const addToCart = function (data) {
   })
 }
 
-const getAllProducts = function (data) {
+const getCart = function (data) {
+  debugger
   return $.ajax({
-    url: config.apiOrigins.development + '/products',
+    url: config.apiOrigins.development + '/carts/' + store.cartId,
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.userToken
     }
   })
   .then((response) => {
-    store.productId = response.products.id
-    store.products = response.products
+    console.log(response)
     return response
   })
 }
@@ -156,6 +156,6 @@ module.exports = {
   // createProduct,
   createCart,
   addToCart,
-  getAllProducts
+  getCart
   // productOFUser
 }
