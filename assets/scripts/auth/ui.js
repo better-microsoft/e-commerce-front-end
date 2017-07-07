@@ -38,7 +38,8 @@ const signOutFailure = (error) => {
 
 const getAllProductsSuccess = (data) => {
   console.log(data, 'products')
-  console.log(data)
+  console.log(data.cart.product[0][0].name)
+  $('#cart-container').text(data.cart.product[0][0].name)
 }
 
 const createCartSuccess = (data) => {
