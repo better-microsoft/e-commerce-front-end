@@ -23,7 +23,7 @@ const changePasswordFaliure = (error) => {
 }
 const signOutSuccess = (data) => {
   $('#sign-in').show()
-  $('#sign-up').hide()
+  $('#sign-up').show()
   // $('#game-board').hide()
   $('#change-password').hide()
   console.log('signOutSuccess')
