@@ -50,7 +50,7 @@ const onCreateCart = function (event) {
 const onAddToCart = function (event) {
   event.preventDefault()
   const data = $('.eatme').val()
-  console.log(data)
+  console.log('add to cart ' + data)
   api.addToCart(data)
     .then(ui.getCartSuccess)
     .catch(ui.getCartFailure)

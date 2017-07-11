@@ -23,10 +23,13 @@ const signIn = function (data) {
   .then((data) => {
     store.userToken = data.user.token
     store.userId = data.user.id
-    store.cartId = data.user.cartId
+    console.log('Token: ' + store.userToken)
+    console.log('User Id: ' + store.userId)
+    console.log('Cart Id: ' + store.cartId)
     createCart(data)
     .then((data) => {
-      console.log(data.cart.id)
+      store.cartId = data.cart.id
+      console.log('Cart Id2: ' + data.cart.id)
       updateUser(data)
     })
   })
@@ -108,7 +111,7 @@ const createCart = function (data) {
 }
 
 const addToCart = function (data) {
-  console.log(data)
+  console.log('adding product ' + data)
   return $.ajax({
     url: config.apiOrigins.development + '/carts/' + store.cartId,
     method: 'PATCH',
@@ -124,7 +127,7 @@ const addToCart = function (data) {
 }
 
 const getCart = function (data) {
-  debugger
+  console.log('cart id: ' + store.cartId)
   return $.ajax({
     url: config.apiOrigins.development + '/carts/' + store.cartId,
     method: 'GET',
