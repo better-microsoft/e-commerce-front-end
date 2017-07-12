@@ -1,3 +1,5 @@
+'use strict'
+const showCartTemplate = require('../templates/cart.handlebars')
 const store = require('../store')
 
 const signUpSuccess = (data) => {
@@ -38,8 +40,9 @@ const signOutFailure = (error) => {
 
 const getAllProductsSuccess = (data) => {
   console.log(data, 'products')
-  console.log(data.cart.product[0].name)
-  $('#cart-container').text(data.cart.product[0].name)
+  console.log(data.cart.product[0])
+  const showCartHtml = showCartTemplate({cart_products: data.cart.product})
+  $('#cart-container').append(showCartHtml)
 }
 
 const createCartSuccess = (data) => {
