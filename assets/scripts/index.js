@@ -2,6 +2,7 @@
 
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
+const handlebars = require('handlebars')
 
 $(() => {
   setAPIOrigin(location, config)

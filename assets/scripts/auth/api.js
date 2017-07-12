@@ -126,6 +126,23 @@ const addToCart = function (data) {
   })
 }
 
+const removeProduct = function (data) {
+  console.log('remove product ' + data)
+  store.index = data
+  return $.ajax({
+    url: config.apiOrigins.development + '/carts-decrease/' + store.cartId,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.userToken
+    },
+    data: {
+      'cart': {
+        'index': data
+      }
+    }
+  })
+}
+
 const getCart = function (data) {
   console.log('cart id: ' + store.cartId)
   return $.ajax({
@@ -159,6 +176,7 @@ module.exports = {
   // createProduct,
   createCart,
   addToCart,
+  removeProduct,
   getCart
   // productOFUser
 }

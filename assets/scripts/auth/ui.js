@@ -1,4 +1,7 @@
+'use strict'
+const showCartTemplate = require('../templates/cart.handlebars')
 const store = require('../store')
+const api = require('./api')
 
 const signUpSuccess = (data) => {
   console.log(data)
@@ -37,9 +40,11 @@ const signOutFailure = (error) => {
 }
 
 const getAllProductsSuccess = (data) => {
+  $('#cart-container').empty()
   console.log(data, 'products')
-  console.log(data.cart.product[0].name)
-  $('#cart-container').text(data.cart.product[0].name)
+  console.log(data.cart.product[0])
+  const showCartHtml = showCartTemplate({cart_products: data.cart.product})
+  $('#cart-container').append(showCartHtml)
 }
 
 const createCartSuccess = (data) => {
@@ -52,11 +57,23 @@ const createCartFailure = (error) => {
 
 const getCartSuccess = (data) => {
   console.log(data, ':-get cart')
+
 }
 
 const getCartFailure = (error) => {
   console.log(error, ':-get cart error')
 }
+
+const removeProductSuccess = (data) => {
+  console.log(data, ':-removed product')
+//  $("div[data-id='" + store.index + "']").remove()
+  $('#cart-container').text("Cart Updated")
+
+}
+const removeProductFailure = (error) => {
+  console.log(error, ':-remove product error')
+}
+
 module.exports = {
   signUpSuccess,
   signInSuccess,
@@ -69,5 +86,7 @@ module.exports = {
   createCartSuccess,
   createCartFailure,
   getCartSuccess,
-  getCartFailure
+  getCartFailure,
+  removeProductSuccess,
+  removeProductFailure
 }
