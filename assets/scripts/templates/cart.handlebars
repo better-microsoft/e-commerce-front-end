@@ -1,9 +1,8 @@
 {{#each cart_products as |item|}}
  <ul>
-  <h1 class="list-heading" data-id="{{@index}}"> <li><small>Product: {{@index}}</small></li></h1>
+  <h1 class="list-heading" data-id="{{@index}}"> <li><small>Name: {{item.0.name}}</small></li></h1>
   <div class="list-body" data-id="{{@index}}">
     {{#if item.0.description}}
-    <li>Name: {{item.0.name}}
     <li>Description: {{item.0.description}}</li>
     <li>Price: ${{item.0.price}}</li>
     {{else}}

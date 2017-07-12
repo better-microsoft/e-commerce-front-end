@@ -63,6 +63,14 @@ const onGetCart = function (event) {
     .catch(ui.getAllProductsFailure)
 }
 
+const onRemoveProduct = function (event) {
+  event.preventDefault()
+  const data = $(event.target).parent().attr('data-id')
+  api.removeProduct(data)
+    .then(ui.removeProductSuccess)
+    .catch(ui.removeProductFailure)
+}
+
 // const onProductOfUser = function (event) {
 //   event.preventDefault()
 //   api.productOFUser()
@@ -75,6 +83,7 @@ const addHandlers = () => {
   $('#sign-in').on('submit', onSignIn)
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out-btn').on('click', onSignOut)
+  $('body').on('click', '.remove-button', onRemoveProduct)
   $('#cart').on('click', onGetCart)
   $('#createcart').on('click', onCreateCart)
   $('#getcart').on('click', onAddToCart)
