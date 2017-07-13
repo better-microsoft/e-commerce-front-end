@@ -41,9 +41,15 @@ const signOutFailure = (error) => {
 }
 
 const getAllProductsSuccess = (data) => {
+  store.cartTotal = 0
   $('#cart-container').empty()
   console.log(data, 'products')
-  console.log(data.cart.product[0])
+  for (let i = 0; i < data.cart.product.length; i++) {
+    console.log(data.cart.product[i][0])
+    store.productArray.push(data.cart.product[i][0])
+    store.cartTotal += data.cart.product[i][0].price
+  }
+  console.log(store.cartTotal, 'total')
   const showCartHtml = showCartTemplate({cart_products: data.cart.product})
   $('#cart-container').append(showCartHtml)
   $('#customButton').show()

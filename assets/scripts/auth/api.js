@@ -179,9 +179,9 @@ const createTransaction = function (data) {
     },
     data: {
       'transaction': {
-        "product": ["test", "test again"],
-      "stripe": ["token test"],
-      "owner": "59514c37a1294279f80febeb"
+        "product": store.productArray,
+      "stripe": [data.stripeToken],
+      "owner": store.userId
       }
     }
   }).then(() => {

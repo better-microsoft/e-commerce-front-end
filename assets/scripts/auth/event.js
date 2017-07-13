@@ -89,7 +89,6 @@ const onCreateCharge = function (event) {
       const credentials = {
         stripeToken: token.id,
       };
-      console.log(credentials)
       api.createTransaction(credentials)
         .then(console.log('success'))
         .then(ui.createChargeSuccess)
@@ -97,9 +96,9 @@ const onCreateCharge = function (event) {
       }
     })
     handler.open({
-      name: 'Nozama.com',
-      description: '2 widgets',
-      amount: 2000
+      name: 'Floral Shop',
+      description: 'A flower for any occasion',
+      amount: store.cartTotal * 100
     });
   }
 
