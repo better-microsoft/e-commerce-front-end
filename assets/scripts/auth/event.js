@@ -58,6 +58,7 @@ const onAddToCart = function (event) {
 const onGetCart = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
+  console.log('get form field', data)
   api.getCart(data)
     .then(ui.getAllProductsSuccess)
     .catch(ui.getAllProductsFailure)
