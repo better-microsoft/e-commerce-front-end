@@ -52,7 +52,7 @@ const getAllProductsSuccess = (data) => {
   console.log(store.cartTotal, 'total')
   const showCartHtml = showCartTemplate({cart_products: data.cart.product})
   $('#cart-container').append(showCartHtml)
-  $('#customButton').show()
+  $('#checkout').show()
 }
 
 const createCartSuccess = (data) => {
@@ -75,6 +75,7 @@ const removeProductSuccess = (data) => {
   console.log(data, ':-removed product')
 //  $("div[data-id='" + store.index + "']").remove()
   $('#cart-container').text("Cart Updated")
+  $('#checkout').hide()
 
 }
 const removeProductFailure = (error) => {
@@ -82,12 +83,14 @@ const removeProductFailure = (error) => {
 }
 const createChargeSuccess = (data) => {
   console.log(data, ': charge success')
+  $('#checkout').hide()
 }
 const createChargeFailure = (error) => {
   console.log(error, ': charge error')
 }
 const chargePaymentSuccess = (data) => {
   console.log(data, ': charge success')
+  $('#checkout').hide()
 }
 const chargePaymentFailure = (error) => {
   console.log(error, ': charge error')

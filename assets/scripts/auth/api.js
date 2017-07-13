@@ -168,8 +168,8 @@ const getCart = function (data) {
 //   })
 // }
 
-const createTransaction = function (data) {
-  console.log('transaction created ' + data.stripeToken)
+const createTransaction = function () {
+  console.log('transaction created ' + store.stripeToken)
   return $.ajax({
     url: config.apiOrigins.development + '/transactions',
     method: 'POST',
@@ -180,7 +180,7 @@ const createTransaction = function (data) {
     data: {
       'transaction': {
         "product": store.productArray,
-      "stripe": [data.stripeToken],
+      "stripe": [store.stripeToken],
       "owner": store.userId
       }
     }
@@ -193,14 +193,16 @@ const createTransaction = function (data) {
 
 const chargePayment = function () {
   console.log('charge created')
+  $('#checkout').hide()
+  $('#cart-container').text("Payment Complete")
   $.ajax({
         type: 'POST',
         url: 'https://api.stripe.com/v1/charges',
         headers: {
-          Authorization: 'Bearer pk_test_6stLdVdL0HAAUtX3YOUt9y4y'
+          Authorization: 'Bearer sk_test_MHUF1Xvxu2c1A1AdSDvdooj6'
         },
         data: {
-          amount: store.cartTotal,
+          amount: store.cartTotal * 100,
           currency: 'usd',
           source: store.stripeToken,
           description: "Purchased at the Floral Shop"
