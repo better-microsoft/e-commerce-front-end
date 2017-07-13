@@ -167,16 +167,39 @@ const getCart = function (data) {
 //     }
 //   })
 // }
+
+const createTransaction = function (data) {
+  console.log('transaction created ' + data.stripeToken)
+  return $.ajax({
+    url: config.apiOrigins.development + '/transactions',
+    method: 'POST',
+    headers: {
+      ContentType: 'application/json',
+      Authorization: 'Token token=' + store.userToken
+    },
+    data: {
+      'transaction': {
+        "product": ["test", "test again"],
+      "stripe": ["token test"],
+      "owner": "59514c37a1294279f80febeb"
+      }
+    }
+  }).then(() => {
+    console.log('products: ' + store.productArray)
+    console.log('stripe: ' + data.stripeToken)
+    console.log('owner: ' + store.userId)
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   changePassword,
   signOut,
   updateUser,
-  // createProduct,
   createCart,
   addToCart,
   removeProduct,
-  getCart
-  // productOFUser
+  getCart,
+  createTransaction
 }

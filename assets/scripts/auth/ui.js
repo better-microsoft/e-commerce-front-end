@@ -14,7 +14,7 @@ const signInSuccess = (data) => {
   console.log(data)
   $('#sign-in').hide()
   $('#cart').show()
-
+  store.productArray = []
 }
 const signInFaliure = (error) => {
   console.log(error)
@@ -74,6 +74,12 @@ const removeProductSuccess = (data) => {
 const removeProductFailure = (error) => {
   console.log(error, ':-remove product error')
 }
+const createChargeSuccess = (data) => {
+  console.log(data, ': charge success')
+}
+const createChargeFailure = (error) => {
+  console.log(error, ': charge error')
+}
 
 module.exports = {
   signUpSuccess,
@@ -89,5 +95,7 @@ module.exports = {
   getCartSuccess,
   getCartFailure,
   removeProductSuccess,
-  removeProductFailure
+  removeProductFailure,
+  createChargeSuccess,
+  createChargeFailure
 }

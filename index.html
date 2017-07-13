@@ -32,14 +32,17 @@
     <!---->
     <script src="https://checkout.stripe.com/checkout.js"></script>
 
-    <button id="customButton">Purchase</button>
+    <button id="checkout">Purchase</button>
 
-    <script>
+    <script src='assets/scripts/bundle.js' type="text/javascript">
+    var tokenId
     var handler = StripeCheckout.configure({
       key: 'pk_test_6stLdVdL0HAAUtX3YOUt9y4y',
       image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
       locale: 'auto',
       token: function(token) {
+        tokenId = token.id
+
         // You can access the token ID with `token.id`.
         // Get the token ID to your server-side code for use.
       }
@@ -59,6 +62,7 @@
     window.addEventListener('popstate', function() {
       handler.close();
     });
+
     </script>
   <!-- -->
     <div class="container">
@@ -121,7 +125,7 @@
       <div class="panel panel-primary" id ="1">
         <div class="panel-heading">PURPLE SILK ROSES</div>
         <div class="panel-body"><img src="http://i.imgur.com/DyJdoP9.png" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer">description: Wedding Flowers Round Roses Bouquets Wedding Silk Purple </div><input class="eatme" type="text" name="product[id]" value="59526d34ec78af1cc744697d">
+        <div class="panel-footer">description: Wedding Flowers Round Roses Bouquets Wedding Silk Purple </div><input class="eatme" type="text" name="product[id]" value="5952b57ea52d092b8d34c6b0">
         <button id="getcart" type="submit" class="btn btn-info btn-block" class="adtocart">$45  ADD TO CART</button>
       </div>
     </div>

@@ -79,6 +79,31 @@ const onRemoveProduct = function (event) {
 //   .catch(ui.productOFUserFailure)
 // }
 
+const onCreateCharge = function (event) {
+  event.preventDefault();
+  const handler = StripeCheckout.configure({
+    key: 'pk_test_6stLdVdL0HAAUtX3YOUt9y4y',
+    image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+    locale: 'auto',
+    token: function(token) {
+      const credentials = {
+        stripeToken: token.id,
+      };
+      console.log(credentials)
+      api.createTransaction(credentials)
+        .then(console.log('success'))
+        .then(ui.createChargeSuccess)
+        .catch(ui.createChargeFailure)
+      }
+    })
+    handler.open({
+      name: 'Nozama.com',
+      description: '2 widgets',
+      amount: 2000
+    });
+  }
+
+
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
@@ -88,6 +113,7 @@ const addHandlers = () => {
   $('#cart').on('click', onGetCart)
   $('#createcart').on('click', onCreateCart)
   $('#getcart').on('click', onAddToCart)
+  $('#checkout').on('click', onCreateCharge)
   // $('#test').on('click', onCreateProduct)
 }
 
