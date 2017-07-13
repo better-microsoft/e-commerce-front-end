@@ -14,6 +14,7 @@ const signInSuccess = (data) => {
   console.log(data)
   $('#sign-in').hide()
   $('#cart').show()
+
 }
 const signInFaliure = (error) => {
   console.log(error)
@@ -45,6 +46,7 @@ const getAllProductsSuccess = (data) => {
   console.log(data.cart.product[0])
   const showCartHtml = showCartTemplate({cart_products: data.cart.product})
   $('#cart-container').append(showCartHtml)
+  $('#customButton').show()
 }
 
 const createCartSuccess = (data) => {
@@ -57,7 +59,6 @@ const createCartFailure = (error) => {
 
 const getCartSuccess = (data) => {
   console.log(data, ':-get cart')
-
 }
 
 const getCartFailure = (error) => {

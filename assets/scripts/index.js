@@ -19,6 +19,7 @@ $(() => {
     $('#changePassword-btn').show()
     $('#change-password').hide()
     $('#cart').hide()
+    $('#customButton').hide()
     // $('#demo').hide()
   })
   // sign-up
