@@ -86,6 +86,12 @@ const createChargeSuccess = (data) => {
 const createChargeFailure = (error) => {
   console.log(error, ': charge error')
 }
+const chargePaymentSuccess = (data) => {
+  console.log(data, ': charge success')
+}
+const chargePaymentFailure = (error) => {
+  console.log(error, ': charge error')
+}
 
 module.exports = {
   signUpSuccess,
@@ -103,5 +109,7 @@ module.exports = {
   removeProductSuccess,
   removeProductFailure,
   createChargeSuccess,
-  createChargeFailure
+  createChargeFailure,
+  chargePaymentSuccess,
+  chargePaymentFailure
 }

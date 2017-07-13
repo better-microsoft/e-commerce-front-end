@@ -80,26 +80,35 @@ const onRemoveProduct = function (event) {
 // }
 
 const onCreateCharge = function (event) {
-  event.preventDefault();
+  event.preventDefault()
   const handler = StripeCheckout.configure({
+    // use secret key
     key: 'pk_test_6stLdVdL0HAAUtX3YOUt9y4y',
     image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
     locale: 'auto',
     token: function(token) {
+      store.stripeToken = token.id
       const credentials = {
-        stripeToken: token.id,
-      };
+        stripeToken: token.id
+      }
       api.createTransaction(credentials)
         .then(console.log('success'))
         .then(ui.createChargeSuccess)
+        .then(
+          api.chargePayment()
+            .then(console.log('success charge'))
+            .then(ui.chargePaymentSuccess)
+            .catch(ui.chargePaymentFailure)
+          )
         .catch(ui.createChargeFailure)
-      }
-    })
+    }
+  })
     handler.open({
       name: 'Floral Shop',
       description: 'A flower for any occasion',
       amount: store.cartTotal * 100
-    });
+    })
+
   }
 
 
