@@ -10,7 +10,8 @@
     "express": "^4.15.3",
     "jquery": "^3.1.1",
     "stripe": "^4.23.1",
-    "stripe-express": "^1.0.2"
+    "stripe-express": "^1.0.2",
+    "uniq": "^1.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",

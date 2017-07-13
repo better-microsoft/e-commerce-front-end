@@ -14,7 +14,7 @@ const signInSuccess = (data) => {
   console.log(data)
   $('#sign-in').hide()
   $('#cart').show()
-
+  store.productArray = []
 }
 const signInFaliure = (error) => {
   console.log(error)
@@ -41,12 +41,18 @@ const signOutFailure = (error) => {
 }
 
 const getAllProductsSuccess = (data) => {
+  store.cartTotal = 0
   $('#cart-container').empty()
   console.log(data, 'products')
-  console.log(data.cart.product[0])
+  for (let i = 0; i < data.cart.product.length; i++) {
+    console.log(data.cart.product[i][0])
+    store.productArray.push(data.cart.product[i][0])
+    store.cartTotal += data.cart.product[i][0].price
+  }
+  console.log(store.cartTotal, 'total')
   const showCartHtml = showCartTemplate({cart_products: data.cart.product})
   $('#cart-container').append(showCartHtml)
-  $('#customButton').show()
+  $('#checkout').show()
 }
 
 const createCartSuccess = (data) => {
@@ -69,10 +75,25 @@ const removeProductSuccess = (data) => {
   console.log(data, ':-removed product')
 //  $("div[data-id='" + store.index + "']").remove()
   $('#cart-container').text("Cart Updated")
+  $('#checkout').hide()
 
 }
 const removeProductFailure = (error) => {
   console.log(error, ':-remove product error')
+}
+const createChargeSuccess = (data) => {
+  console.log(data, ': charge success')
+  $('#checkout').hide()
+}
+const createChargeFailure = (error) => {
+  console.log(error, ': charge error')
+}
+const chargePaymentSuccess = (data) => {
+  console.log(data, ': charge success')
+  $('#checkout').hide()
+}
+const chargePaymentFailure = (error) => {
+  console.log(error, ': charge error')
 }
 
 module.exports = {
@@ -89,5 +110,9 @@ module.exports = {
   getCartSuccess,
   getCartFailure,
   removeProductSuccess,
-  removeProductFailure
+  removeProductFailure,
+  createChargeSuccess,
+  createChargeFailure,
+  chargePaymentSuccess,
+  chargePaymentFailure
 }
