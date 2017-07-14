@@ -1,5 +1,4 @@
 const getFormFields = require('../../../lib/get-form-fields')
-// const removebton = require('../templates/car-listing.handlebars')
 const api = require('./api')
 const ui = require('./ui')
 const store = require('../store')
@@ -29,18 +28,11 @@ const onChangePassword = function (event) {
 }
 const onSignOut = function (event) {
   event.preventDefault()
-  // const data = getFormFields(event.target)
   api.signOut()
     .then(ui.signOutSuccess)
    .catch(ui.signOutFailure)
 }
 
-// const onCreateProduct = function (event) {
-//   event.preventDefault()
-//   api.createCart(store.userId)
-//     .then(ui.createCartSuccess)
-//     .catch(ui.createCartFailure)
-// }
 const onCreateCart = function (event) {
   event.preventDefault()
   api.createCart(store.userId)
@@ -72,12 +64,41 @@ const onRemoveProduct = function (event) {
     .catch(ui.removeProductFailure)
 }
 
-// const onProductOfUser = function (event) {
-//   event.preventDefault()
-//   api.productOFUser()
-//   .then(ui.productOFUserSuccess)
-//   .catch(ui.productOFUserFailure)
-// }
+const onCreateCharge = function (event) {
+  event.preventDefault()
+  const handler = StripeCheckout.configure({
+    // use secret key
+    key: 'pk_test_SeqDNzyICbqoe0SvghiS9vmT',
+    image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+    locale: 'auto',
+    token: function (token) {
+      store.stripeToken = token.id
+      api.chargePayment()
+        .then(console.log('success charge'))
+        .then(ui.chargePaymentSuccess)
+          .then(api.createTransaction)
+          .then(ui.createChargeSuccess)
+          .catch(ui.createChargeFailure)
+        .catch(ui.chargePaymentFailure)
+    }
+  })
+  handler.open({
+    name: 'Floral Shop',
+    description: 'A flower for any occasion',
+    amount: store.cartTotal * 100
+  })
+}
+
+const onTransactionHistory = function () {
+  event.preventDefault()
+  api.transactionHistory()
+    .then(ui.transactionHistorySuccess)
+    .catch(ui.transactionHistoryFailure)
+}
+
+const onClearHistory = () => {
+  $('#history-container').empty()
+}
 
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
@@ -85,10 +106,12 @@ const addHandlers = () => {
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out-btn').on('click', onSignOut)
   $('body').on('click', '.remove-button', onRemoveProduct)
+  $('body').on('click', '.clear-button', onClearHistory)
   $('#cart').on('click', onGetCart)
   $('#createcart').on('click', onCreateCart)
   $('#getcart').on('click', onAddToCart)
-  // $('#test').on('click', onCreateProduct)
+  $('#checkout').on('click', onCreateCharge)
+  $('#history').on('click', onTransactionHistory)
 }
 
 module.exports = {

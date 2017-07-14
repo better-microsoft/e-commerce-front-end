@@ -29,38 +29,13 @@
       </div>
     </nav>
     <div id="cart-container"></div>
+    <div id="history-container"></div>
     <!---->
     <script src="https://checkout.stripe.com/checkout.js"></script>
 
-    <button id="customButton">Purchase</button>
+    <button id="checkout">Purchase</button>
+    <button id="history">Transaction History</button>
 
-    <script>
-    var handler = StripeCheckout.configure({
-      key: 'pk_test_6stLdVdL0HAAUtX3YOUt9y4y',
-      image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-      locale: 'auto',
-      token: function(token) {
-        // You can access the token ID with `token.id`.
-        // Get the token ID to your server-side code for use.
-      }
-    });
-
-    document.getElementById('customButton').addEventListener('click', function(e) {
-      // Open Checkout with further options:
-      handler.open({
-        name: 'Nozama.com',
-        description: '2 widgets',
-        amount: 2000
-      });
-      e.preventDefault();
-    });
-
-    // Close Checkout on page navigation:
-    window.addEventListener('popstate', function() {
-      handler.close();
-    });
-    </script>
-  <!-- -->
     <div class="container">
       <form id="sign-up">
         <h2>Signup</h2>
@@ -121,7 +96,7 @@
       <div class="panel panel-primary" id ="1">
         <div class="panel-heading">PURPLE SILK ROSES</div>
         <div class="panel-body"><img src="http://i.imgur.com/DyJdoP9.png" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer">description: Wedding Flowers Round Roses Bouquets Wedding Silk Purple </div><input class="eatme" type="text" name="product[id]" value="59526d34ec78af1cc744697d">
+        <div class="panel-footer">description: Wedding Flowers Round Roses Bouquets Wedding Silk Purple </div><input class="eatme" type="text" name="product[id]" value="5966f920e2b06a0bd39b1cb4">
         <button id="getcart" type="submit" class="btn btn-info btn-block" class="adtocart">$45  ADD TO CART</button>
       </div>
     </div>
