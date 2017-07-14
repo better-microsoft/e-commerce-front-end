@@ -1,5 +1,6 @@
 'use strict'
 const showCartTemplate = require('../templates/cart.handlebars')
+const showHistoryTemplate = require('../templates/history.handlebars')
 const store = require('../store')
 const api = require('./api')
 
@@ -8,19 +9,26 @@ const signUpSuccess = (data) => {
   $('#sign-up').hide()
   $('#sign-up-btn').hide()
   $('#sign-in').show()
+  $('#cart-container').empty()
+  $('#history-container').empty()
 }
 
 const signInSuccess = (data) => {
   console.log(data)
   $('#sign-in').hide()
   $('#cart').show()
+  $('#history').show()
   store.productArray = []
+  $('#cart-container').empty()
+  $('#history-container').empty()
 }
 const signInFaliure = (error) => {
   console.log(error)
 }
 const changePasswordSuccess = (data) => {
   console.log(data)
+  $('#cart-container').empty()
+  $('#history-container').empty()
 }
 const changePasswordFaliure = (error) => {
   console.log(error)
@@ -30,6 +38,10 @@ const signOutSuccess = (data) => {
   $('#sign-up').show()
   // $('#game-board').hide()
   $('#change-password').hide()
+  $('#history').hide()
+  $('#checkout').hide()
+  $('#cart-container').empty()
+  $('#history-container').empty()
   console.log('signOutSuccess')
 }
 
@@ -43,7 +55,7 @@ const signOutFailure = (error) => {
 const getAllProductsSuccess = (data) => {
   store.cartTotal = 0
   $('#cart-container').empty()
-  console.log(data, 'products')
+  $('#history-container').empty()
   for (let i = 0; i < data.cart.product.length; i++) {
     console.log(data.cart.product[i][0])
     store.productArray.push(data.cart.product[i][0])
@@ -52,11 +64,17 @@ const getAllProductsSuccess = (data) => {
   console.log(store.cartTotal, 'total')
   const showCartHtml = showCartTemplate({cart_products: data.cart.product})
   $('#cart-container').append(showCartHtml)
-  $('#checkout').show()
+  if (store.cartTotal !== 0) {
+    $('#checkout').show()
+  } else {
+    $('#cart-container').text('Your Cart Is Empty')
+  }
 }
 
 const createCartSuccess = (data) => {
   console.log(data, ':-created cart')
+  $('#cart-container').empty()
+  $('#history-container').empty()
 }
 
 const createCartFailure = (error) => {
@@ -74,9 +92,9 @@ const getCartFailure = (error) => {
 const removeProductSuccess = (data) => {
   console.log(data, ':-removed product')
 //  $("div[data-id='" + store.index + "']").remove()
-  $('#cart-container').text("Cart Updated")
+  $('#history-container').empty()
+  $('#cart-container').text('Cart Updated')
   $('#checkout').hide()
-
 }
 const removeProductFailure = (error) => {
   console.log(error, ':-remove product error')
@@ -90,12 +108,26 @@ const createChargeFailure = (error) => {
 }
 const chargePaymentSuccess = (data) => {
   console.log(data, ': charge success')
+  $('#cart-container').empty()
+  $('#history-container').empty()
   $('#checkout').hide()
 }
 const chargePaymentFailure = (error) => {
   console.log(error, ': charge error')
 }
 
+const transactionHistorySuccess = (data) => {
+  console.log(data, ': transaction success')
+  $('#history-container').empty()
+  console.log(data, 'transactions')
+  const showHistoryTemplateHtml = showHistoryTemplate({history: data.transactions})
+  $('#history-container').append(showHistoryTemplateHtml)
+}
+const transactionHistoryFailure = (error) => {
+  console.log(error, ': transaction error')
+  $('#history-container').empty()
+  $('#history-container').text('No Purchase History')
+}
 module.exports = {
   signUpSuccess,
   signInSuccess,
@@ -114,5 +146,7 @@ module.exports = {
   createChargeSuccess,
   createChargeFailure,
   chargePaymentSuccess,
-  chargePaymentFailure
+  chargePaymentFailure,
+  transactionHistorySuccess,
+  transactionHistoryFailure
 }

@@ -1,0 +1,17 @@
+<h1>Transaction History</h1><button class=clear-button> Hide History </button>
+{{#each history as |transaction|}}
+<h2>Order Number: {{@index}}</h2>
+{{#each transaction.product as |item|}}
+ <ul>
+  <h3 class="list-heading" data-id="{{@index}}"> <li>Product: {{item.name}}</li></h3>
+  <div class="list-body" data-id="{{@index}}">
+    {{#if item.description}}
+    <li>Description: {{item.description}}</li>
+    <li>Price: ${{item.price}}</li>
+    {{else}}
+      No Purchase History.
+    {{/if}}
+  </div>
+</ul>
+{{/each}}
+{{/each}}

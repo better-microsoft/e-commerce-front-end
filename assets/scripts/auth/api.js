@@ -214,6 +214,30 @@ const chargePayment = function () {
           console.log('error payment: ', response);
         }
       })
+      .then((data) => {
+        createTransaction()
+        createCart(data)
+        .then((data) => {
+          store.cartId = data.cart.id
+          console.log('Cart Id2: ' + data.cart.id)
+          updateUser(data)
+        })
+      })
+}
+
+const transactionHistory = function () {
+  console.log('cart id: ' + store.cartId)
+  return $.ajax({
+    url: config.apiOrigins.development + '/transactions',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.userToken
+    }
+})
+  .then((response) => {
+    console.log(response)
+    return response
+  })
 }
 
 module.exports = {
@@ -227,5 +251,6 @@ module.exports = {
   removeProduct,
   getCart,
   createTransaction,
-  chargePayment
+  chargePayment,
+  transactionHistory
 }

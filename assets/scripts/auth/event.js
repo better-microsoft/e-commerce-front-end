@@ -89,17 +89,29 @@ const onCreateCharge = function (event) {
   })
 }
 
+const onTransactionHistory = function () {
+  event.preventDefault()
+  api.transactionHistory()
+    .then(ui.transactionHistorySuccess)
+    .catch(ui.transactionHistoryFailure)
+}
+
+const onClearHistory = () => {
+  $('#history-container').empty()
+}
+
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out-btn').on('click', onSignOut)
   $('body').on('click', '.remove-button', onRemoveProduct)
+  $('body').on('click', '.clear-button', onClearHistory)
   $('#cart').on('click', onGetCart)
   $('#createcart').on('click', onCreateCart)
   $('#getcart').on('click', onAddToCart)
   $('#checkout').on('click', onCreateCharge)
-  // $('#test').on('click', onCreateProduct)
+  $('#history').on('click', onTransactionHistory)
 }
 
 module.exports = {
