@@ -215,6 +215,7 @@ const chargePayment = function () {
         }
       })
       .then((data) => {
+        createTransaction()
         createCart(data)
         .then((data) => {
           store.cartId = data.cart.id
@@ -222,6 +223,21 @@ const chargePayment = function () {
           updateUser(data)
         })
       })
+}
+
+const transactionHistory = function () {
+  console.log('cart id: ' + store.cartId)
+  return $.ajax({
+    url: config.apiOrigins.development + '/transactions',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.userToken
+    }
+})
+  .then((response) => {
+    console.log(response)
+    return response
+  })
 }
 
 module.exports = {
@@ -235,5 +251,6 @@ module.exports = {
   removeProduct,
   getCart,
   createTransaction,
-  chargePayment
+  chargePayment,
+  transactionHistory
 }

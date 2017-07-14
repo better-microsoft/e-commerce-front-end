@@ -74,9 +74,8 @@ const getCartFailure = (error) => {
 const removeProductSuccess = (data) => {
   console.log(data, ':-removed product')
 //  $("div[data-id='" + store.index + "']").remove()
-  $('#cart-container').text("Cart Updated")
+  $('#cart-container').text('Cart Updated')
   $('#checkout').hide()
-
 }
 const removeProductFailure = (error) => {
   console.log(error, ':-remove product error')
@@ -96,6 +95,15 @@ const chargePaymentFailure = (error) => {
   console.log(error, ': charge error')
 }
 
+const transactionHistorySuccess = (data) => {
+  console.log(data, ': transaction success')
+  for (let i = 0; i < data.transactions.length; i++) {
+    $("#history-container").text(data.transactions[i])
+  }
+}
+const transactionHistoryFailure = (error) => {
+  console.log(error, ': transaction error')
+}
 module.exports = {
   signUpSuccess,
   signInSuccess,
@@ -114,5 +122,7 @@ module.exports = {
   createChargeSuccess,
   createChargeFailure,
   chargePaymentSuccess,
-  chargePaymentFailure
+  chargePaymentFailure,
+  transactionHistorySuccess,
+  transactionHistoryFailure
 }

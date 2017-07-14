@@ -89,6 +89,13 @@ const onCreateCharge = function (event) {
   })
 }
 
+const onTransactionHistory = function () {
+  event.preventDefault()
+  api.transactionHistory()
+    .then(ui.transactionHistorySuccess)
+    .catch(ui.transactionHistoryFailure)
+}
+
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
@@ -99,7 +106,7 @@ const addHandlers = () => {
   $('#createcart').on('click', onCreateCart)
   $('#getcart').on('click', onAddToCart)
   $('#checkout').on('click', onCreateCharge)
-  // $('#test').on('click', onCreateProduct)
+  $('#history').on('click', onTransactionHistory)
 }
 
 module.exports = {
