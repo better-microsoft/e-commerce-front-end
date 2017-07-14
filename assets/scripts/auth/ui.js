@@ -111,7 +111,6 @@ const chargePaymentSuccess = (data) => {
   $('#cart-container').empty()
   $('#history-container').empty()
   $('#checkout').hide()
-  store.productArray = []
 }
 const chargePaymentFailure = (error) => {
   console.log(error, ': charge error')

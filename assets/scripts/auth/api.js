@@ -188,6 +188,7 @@ const createTransaction = function () {
     console.log('products: ' + store.productArray)
     console.log('stripe: ' + data.stripeToken)
     console.log('owner: ' + store.userId)
+    store.productArray = []
   })
 }
 
