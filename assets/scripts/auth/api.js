@@ -216,13 +216,13 @@ const chargePayment = function () {
       })
       .then((data) => {
         createTransaction()
-        createCart(data)
-        .then((data) => {
+      })
+      .then(createCart)
+      .then((data) => {
           store.cartId = data.cart.id
           console.log('Cart Id2: ' + data.cart.id)
           updateUser(data)
         })
-      })
 }
 
 const transactionHistory = function () {
