@@ -41,7 +41,7 @@ const onCreateCart = function (event) {
 }
 const onAddToCart = function (event) {
   event.preventDefault()
-  const data = $('.eatme').val()
+  const data = $('.eatme').attr('value')
   console.log('add to cart ' + data)
   api.addToCart(data)
     .then(ui.getCartSuccess)
