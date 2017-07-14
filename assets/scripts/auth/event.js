@@ -41,8 +41,10 @@ const onCreateCart = function (event) {
 }
 const onAddToCart = function (event) {
   event.preventDefault()
-  const data = $('.eatme').attr('value')
-  console.log('add to cart ' + data)
+  // const data = $('.eatme').attr('value')
+  console.log(event.target)
+  const data = $(event.target).attr('value')
+  console.log(data)
   api.addToCart(data)
     .then(ui.getCartSuccess)
     .catch(ui.getCartFailure)
@@ -109,7 +111,7 @@ const addHandlers = () => {
   $('body').on('click', '.clear-button', onClearHistory)
   $('#cart').on('click', onGetCart)
   $('#createcart').on('click', onCreateCart)
-  $('#getcart').on('click', onAddToCart)
+  $('.adtocart').on('click', onAddToCart)
   $('#checkout').on('click', onCreateCharge)
   $('#history').on('click', onTransactionHistory)
 }
