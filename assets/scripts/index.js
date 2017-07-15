@@ -13,10 +13,10 @@ const authEvents = require('./auth/event.js')
 
 $(() => {
   authEvents.addHandlers()
-  $('#sign-in').hide()
+    $('#sign-in').hide()
     $('#sign-up').hide()
-    $('#sign-out-btn').show()
-    $('#changePassword-btn').show()
+    $('#sign-out-btn').hide()
+    $('#changePassword-btn').hide()
     $('#change-password').hide()
     $('#cart').hide()
 

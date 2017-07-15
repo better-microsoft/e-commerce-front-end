@@ -7,7 +7,6 @@ const onSignUp = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
   data.credentials.cartId = 'empty'
-  console.log(data)
   api.signUp(data)
     .then(ui.signUpSuccess)
     .catch(ui.signUpFailure)
@@ -42,9 +41,7 @@ const onCreateCart = function (event) {
 const onAddToCart = function (event) {
   event.preventDefault()
   // const data = $('.eatme').attr('value')
-  console.log(event.target)
   const data = $(event.target).attr('value')
-  console.log(data)
   api.addToCart(data)
     .then(ui.getCartSuccess)
     .catch(ui.getCartFailure)
@@ -52,7 +49,6 @@ const onAddToCart = function (event) {
 const onGetCart = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
-  console.log('get form field', data)
   api.getCart(data)
     .then(ui.getAllProductsSuccess)
     .catch(ui.getAllProductsFailure)
@@ -76,7 +72,6 @@ const onCreateCharge = function (event) {
     token: function (token) {
       store.stripeToken = token.id
       api.chargePayment()
-        .then(console.log('success charge'))
         .then(ui.chargePaymentSuccess)
           .then(api.createTransaction)
           .then(ui.createChargeSuccess)
