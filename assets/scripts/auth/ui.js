@@ -34,6 +34,7 @@ const signInSuccess = (data) => {
   $('#notifications').text('Sign in success')
 }
 const signInFaliure = (error) => {
+  console.log('test')
   $('#notifications').empty()
   $('#notifications').text('Sign in failure')
 }

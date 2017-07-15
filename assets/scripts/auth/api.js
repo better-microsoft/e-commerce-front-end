@@ -4,7 +4,7 @@ const store = require('../store.js')
 
 const signUp = function (data) {
   return $.ajax({
-    url: config.apiOrigins.production + '/sign-up',
+    url: config.apiOrigins.development + '/sign-up',
     method: 'POST',
     data
   })
@@ -12,9 +12,12 @@ const signUp = function (data) {
 
 const signIn = function (data) {
   return $.ajax({
-    url: config.apiOrigins.production + '/sign-in',
+    url: config.apiOrigins.development + '/sign-in',
     method: 'POST',
-    data
+    data,
+    error: function (request, status, error) {
+        $('#notifications').text('Sign in failure')
+    }
   })
   .then((data) => {
     store.userToken = data.user.token
@@ -29,7 +32,7 @@ const signIn = function (data) {
 
 const changePassword = function (data) {
   return $.ajax({
-    url: config.apiOrigins.production + '/change-password/' + store.userId,
+    url: config.apiOrigins.development + '/change-password/' + store.userId,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.userToken
@@ -39,7 +42,7 @@ const changePassword = function (data) {
 }
 const signOut = function () {
   return $.ajax({
-    url: config.apiOrigins.production + '/sign-out/' + store.userId,
+    url: config.apiOrigins.development + '/sign-out/' + store.userId,
     method: 'DELETE',
     headers: {
       Authorization: 'Token token=' + store.userToken
@@ -49,7 +52,7 @@ const signOut = function () {
 
 const updateUser = function (data) {
   return $.ajax({
-    url: config.apiOrigins.production + '/users/' + store.userId,
+    url: config.apiOrigins.development + '/users/' + store.userId,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.userToken
@@ -64,7 +67,7 @@ const updateUser = function (data) {
 
 const createCart = function (data) {
   return $.ajax({
-    url: config.apiOrigins.production + '/carts',
+    url: config.apiOrigins.development + '/carts',
     method: 'POST',
     headers: {
       Authorization: 'Token token=' + store.userToken
@@ -82,7 +85,7 @@ const createCart = function (data) {
 
 const addToCart = function (data) {
   return $.ajax({
-    url: config.apiOrigins.production + '/carts/' + store.cartId,
+    url: config.apiOrigins.development + '/carts/' + store.cartId,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.userToken
@@ -98,7 +101,7 @@ const addToCart = function (data) {
 const removeProduct = function (data) {
   store.index = data
   return $.ajax({
-    url: config.apiOrigins.production + '/carts-decrease/' + store.cartId,
+    url: config.apiOrigins.development + '/carts-decrease/' + store.cartId,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.userToken
@@ -113,7 +116,7 @@ const removeProduct = function (data) {
 
 const getCart = function (data) {
   return $.ajax({
-    url: config.apiOrigins.production + '/carts/' + store.cartId,
+    url: config.apiOrigins.development + '/carts/' + store.cartId,
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.userToken
@@ -126,7 +129,7 @@ const getCart = function (data) {
 
 const createTransaction = function () {
   return $.ajax({
-    url: config.apiOrigins.production + '/transactions',
+    url: config.apiOrigins.development + '/transactions',
     method: 'POST',
     headers: {
       ContentType: 'application/json',
@@ -172,7 +175,7 @@ const chargePayment = function () {
 
 const transactionHistory = function () {
   return $.ajax({
-    url: config.apiOrigins.production + '/transactions',
+    url: config.apiOrigins.development + '/transactions',
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.userToken
