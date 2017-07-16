@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Floral Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Do not add `link` tags unless you know what you are doing -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Do not add `script` tags unless you know what you are doing -->
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse" class="nav">
+      <div class="container-fluid">
+        <div class="navbar-header" class="hed">
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a id="sign-up-btn" ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a id="login-btn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li><a id="changePassword-btn" ><span class="glyphicon glyphicon-log-in"></span> Change Password</a></li>
+          <li><a id="sign-out-btn" ><span class="glyphicon glyphicon-user"></span> Sign Out</a></li>
+          <li><a id="cart" href="#demo" data-toggel="collapse"><span class="glyphicon glyphicon-shopping-cart" ></span> Cart</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div id='notifications'></div>
+    <div id="cart-container"></div>
+    <div id="history-container"></div>
+    <!---->
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+
+    <button id="checkout">Purchase</button>
+    <button id="history">Transaction History</button>
+
+    <div class="container">
+      <form id="sign-up">
+        <h2>Signup</h2>
+        <div class="form-group">
+          <label for="email">Email address:</label>
+          <input type="email" name="credentials[email]" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" name="credentials[password]" class="form-control" id="pwd">
+        </div>
+        <div class="form-group">
+          <label for="pwd">ConfirmPassword:</label>
+          <input type="password" name="credentials[password_confirmation]" class="form-control" id="pwd">
+        </div>
+        <button type="submit" class="btn btn-success btn-block">Sign Up</button>
+      </form>
+      <form id="sign-in">
+        <h2>Login</h2>
+        <div class="form-group">
+          <label for="email">Email address:</label>
+          <input type="email" name="credentials[email]" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" name="credentials[password]" class="form-control" id="pwd">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" class="sin">Login</button>
+      </form>
+      <form id="change-password">
+        <h2>CHANGE PASSWORD</h2>
+        <div class="form-group">
+          <label for="pwd"> Old-Password:</label>
+          <input type="password" name="passwords[old]" class="form-control" id="pwd">
+        </div>
+        <div class="form-group">
+          <label for="pwd">New-Password:</label>
+          <input type="password" name="passwords[new]" class="form-control" id="pwd">
+        </div>
+        <button type="submit" class="btn btn-info btn-block ">Submit</button>
+      </form>
+    </div>
+  </div>
+  <!--online item display form begins here-->
+
+  <div class="jumbotron">
+  <div class="container text-center">
+    <h1>FLOWERS & PETALS </h1>
+    <p>Mission, Vision & Values</p>
+  </div>
+</div>
+<div class ="container item"  id="demo" class="collapse">
+  <!--items of cart to be added in here-->
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4" >
+      <div class="panel panel-primary" id ="1">
+        <div class="panel-heading">PURPLE SILK ROSES</div>
+        <div class="panel-body"><img src="http://i.imgur.com/DyJdoP9.png" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-footer">description: Wedding Flowers Round Roses Bouquets Wedding Silk Purple </div>
+        <button class="adtocart" type="submit"  value="59692b6c25ea7200127b9ff6">$45  ADD TO CART</button>
+      </div>
+    </div>
+    <div class="col-sm-4" >
+      <div class="panel panel-danger" id ="2">
+        <div class="panel-heading">Roses And Lily Bouquet</div>
+        <div class="panel-body"><img src="http://i.imgur.com/73LcBU1.png" placeholder ="150*80"class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-footer">description: The Roses And Lily Bouquet ‑ VASE INCLUDED</div>
+        <button type="submit"  class="adtocart" value="59692b9125ea7200127b9ff7">$25  ADD TO CART</button>
+      </div>
+    </div>
+    <div class="col-sm-4" >
+      <div class="panel panel-success"id ="3" >
+        <div class="panel-heading">Teleflora</div>
+        <div class="panel-body"><img src="http://i.imgur.com/c3DOFFg.png" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-footer">description: Teleflora Joyful Memory Flower Arangement - Vase Included </div>
+        <button type="submit"  class="adtocart" value="59692ba825ea7200127b9ff8">$15  ADD TO CART</button>
+      </div>
+    </div>
+  </div>
+</div><br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4" >
+      <div class="panel panel-success" id ="4">
+        <div class="panel-heading">ROSES</div>
+        <div class="panel-body"><img src="https://i.imgur.com/TEAGXFz.jpg" class="img-responsive" style="width:100% " alt="Image"></div>
+        <div class="panel-footer">description: Two Dozen Vibrant Birthday Roses</div>
+        <button type="submit" class="adtocart" value="59692bbf25ea7200127b9ff9">$21  ADD TO CART</button>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="panel panel-primary" id ="5">
+        <div class="panel-heading">DREAM-CLOUD</div>
+        <div class="panel-body"><img src="http://i.imgur.com/kHYKY5y.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-footer">description: Vibrant Color-full Roses - Basket Included</div>
+        <button type="submit"  class="adtocart" value="59692bce25ea7200127b9ffa">$35  ADD TO CART</button>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="panel panel-primary" id ="6">
+        <div class="panel-heading">Luxury Ferrero Rocher</div>
+        <div class="panel-body"><img src="http://i.imgur.com/9vV2KLn.png" class="img-responsive" style="width:100% " alt="Image"></div>
+        <div class="panel-footer">description: Joyful Memory Flower Arangement - Vase Included </div>
+          <button type="submit"  class="adtocart" value="59692b0725ea7200127b9ff5">$20  ADD TO CART</button>
+      </div>
+    </div>
+  </div>
+</div><br><br>
+
+<footer class="container-fluid text-center">
+  <p>Online Store Copyright</p>
+
+</footer>
+
+</body>
+
+</html>
