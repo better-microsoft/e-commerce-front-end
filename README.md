@@ -25,11 +25,11 @@ Project History:
 
   The first step of this project started with a planning phase. Planning was incorporate with the utilization of a wire-frame scketch. The wire-frame used in project is linked below:
 
-  ![alt text](TeamProjectRelationalModel.jpg "Picture of Project Wire-Frame")
+  ![alt text](TeamProjectWireframe.jpg "Picture of Project ERD")
 
   And here is the relationship diagram:
 
-  ![alt text](TeamProjectWireframe.jpg "Picture of Project ERD")
+  ![alt text](TeamProjectRelationalModel.jpg "Picture of Project Wire-Frame")
 
   The project was broken up into the following steps:
 - API Set up
@@ -49,7 +49,7 @@ Unsolved Problems
 
 User Stories:
 
--When I sign up, I should be able to sign in
--When I sign in, I should be able to sign up, sign out, change password, and go to my cart. I should also see a product menu, which I can add to my cart.
--When I go to my cart, I should be about to delete items and pay for my cart total
--When I pay for my cart total, I should see an empty cart and a confirmation that my purchase was successful
+- When I sign up, I should be able to sign in
+- When I sign in, I should be able to sign up, sign out, change password, and go to my cart. I should also see a product menu, which I can add to my cart.
+- When I go to my cart, I should be about to delete items and pay for my cart total
+- When I pay for my cart total, I should see an empty cart and a confirmation that my purchase was successful
